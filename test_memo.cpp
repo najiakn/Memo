@@ -54,29 +54,63 @@ void afficher(taches tache[], int tache_nombre) {
 }
 
 
-void supprimer(taches tache[], int *tache_nombre) {
-    char nom[PRO_Tache];
-    printf("Tapez le nom de la tache a supprimer : ");
-    scanf("%s", nom);
+void modifier(taches tache[], int tache_nombre) {
+    printf("Liste des taches :\n");
 
-    int index = -1;
-    for (int i = 0; i < *tache_nombre; i++) {
-        if (strcmp(tache[i].nom, nom) == 0) {
-            index = i;
-            break;
-        }
+    for (int i = 0; i < tache_nombre; i++) {
+        printf("%d. Nom : %s, Description : %s, Date : %d/%d/%d, Priorite : %s\n",
+               i + 1, tache[i].nom, tache[i].description,
+               tache[i].date.jour, tache[i].date.mois, tache[i].date.annee,
+               tache[i].priorite);
     }
 
-    if (index != -1) {
-        // Décaler les éléments suivants pour remplir l'emplacement supprimé
-        for (int i = index; i < *tache_nombre - 1; i++) {
-            tache[i] = tache[i + 1];
+    int choixIndice;
+    printf("Tapez le numero de l'indice de la tache a modifier : ");
+    scanf("%d", &choixIndice);
+
+    if (choixIndice >= 1 && choixIndice <= tache_nombre) {
+        int index = choixIndice - 1;
+
+        printf("Champs disponibles pour modification :\n");
+        printf("1. Nom\n");
+        printf("2. Description\n");
+        printf("3. Date d'echeance\n");
+        printf("4. Priorite\n");
+
+        int choixChamp;
+        printf("Tapez le numero du champ a modifier : ");
+        scanf("%d", &choixChamp);
+
+        switch (choixChamp) {
+            case 1:
+                printf("Tapez le nouveau nom : ");
+                scanf("%s", tache[index].nom);
+                break;
+            case 2:
+                printf("Tapez la nouvelle description : ");
+                scanf(" %[^\n]", tache[index].description);
+                break;
+            case 3:
+                printf("Tapez la nouvelle date d'echeance :\n");
+                printf("Tapez le jour : ");
+                scanf("%d", &(tache[index].date.jour));
+                printf("Tapez le mois : ");
+                scanf("%d", &(tache[index].date.mois));
+                printf("Tapez l'annee : ");
+                scanf("%d", &(tache[index].date.annee));
+                break;
+            case 4:
+                printf("Tapez la nouvelle priorite : ");
+                scanf("%s", tache[index].priorite);
+                break;
+            default:
+                printf("Choix invalide. Veuillez entrer un nombre correspondant au champ.\n");
+                return;
         }
 
-        (*tache_nombre)--;
-        printf("Suppression avec succes !\n");
+        printf("Modification avec succes !\n");
     } else {
-        printf("Tache non trouvee avec le nom %s\n", nom);
+        printf("Indice invalide.\n");
     }
 }
 
@@ -85,12 +119,11 @@ void menu() {
     taches tache[PRO_Tache];
     int tache_nombre = 0;
 
-    while (choix != 5) {
+    while (choix != 4) {
         printf("1--------------Afficher les taches----------------\n");
         printf("2--------------Ajouter une tache-------------------\n");
         printf("3--------------Moddifier une tache-----------------\n");
-        printf("4--------------Supprimer une tache-----------------\n");
-        printf("5--------------Fermer-------------------------------\n");
+        printf("4--------------Fermer-------------------------------\n");
 
         scanf("%d", &choix);
 
@@ -105,16 +138,11 @@ void menu() {
                 break;
 
             case 3:
-                
+                modifier(tache, tache_nombre);
                 break;
-
             case 4:
-                supprimer(tache, &tache_nombre);
-                break;
-
-            case 5:
                 printf("Fermeture demandée. Au revoir !\n");
-                break;
+                return;
 
             default:
                 printf("Option non valide.\n");
@@ -127,3 +155,4 @@ int main() {
 
     return 0;
 }
+

@@ -45,19 +45,21 @@ void ajouter(taches tache[], int tache_nombre) {
 void afficher(taches tache[], int tache_nombre) {
     printf("Afficher les taches :\n");
 
-    for (int i = 0; i < tache_nombre; i++) {
-        printf(" Nom : %s, Description : %s, Date : %d/%d/%d, Priorite : %s\n",
-               tache[i].nom, tache[i].description,
-               tache[i].date.jour, tache[i].date.mois, tache[i].date.annee,
-               tache[i].priorite);
-    }
+    int i;
+for (i = 0; i < tache_nombre; i++) {
+    printf("%d. Nom : %s, Description : %s, Date : %d/%d/%d, Priorite : %s\n",
+           i + 1, tache[i].nom, tache[i].description,
+           tache[i].date.jour, tache[i].date.mois, tache[i].date.annee,
+           tache[i].priorite);
+}
 }
 
 
 void modifier(taches tache[], int tache_nombre) {
     printf("Liste des taches :\n");
 
-    for (int i = 0; i < tache_nombre; i++) {
+   int i;
+for (i = 0; i < tache_nombre; i++) {
         printf("%d. Nom : %s, Description : %s, Date : %d/%d/%d, Priorite : %s\n",
                i + 1, tache[i].nom, tache[i].description,
                tache[i].date.jour, tache[i].date.mois, tache[i].date.annee,
