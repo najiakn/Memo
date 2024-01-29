@@ -40,5 +40,33 @@ Fin
 
 ---------------------------------------------------------Algorithme pour les fonctions
 
+------------algorithme pour la fonction ajouter
+void fonction ajouter(tache[],nombre_tache){
 
+Ecrire("remplir la tache")
+
+Ecrire("entrer la valeur de nom")
+lire(tache[tache_nombre].nom)
+
+
+Ecrire("entrer la valeur de description")
+Lire(tache[tache_nombre].description)
+
+
+Ecrire("entrer la valeur de la date_echeance")
+
+Ecrire("entrer le jour")
+lire(tache[tache_nombre].date.jour)
+
+Ecrire("entrer le mois")
+lire(tache[tache_nombre].date.mois)
+
+Ecrire("entrer l'annee")
+Lire(tache[tache_nombre].date.annee)
+
+Ecrire("entrer la  valeur de priorite")
+Lire(tache[tache_nombre].priorite")
+
+tache_nombre <-tache_nombre+1
+Fin
 
