@@ -40,8 +40,8 @@ Fin
 
 ---------------------------------------------------------Algorithme pour les fonctions
 
-------------algorithme pour la fonction ajouter
-void fonction ajouter(tache[],nombre_tache){
+1)------------algorithme pour la fonction ajouter
+void  ajouter(tache[],nombre_tache){
 
 Ecrire("remplir la tache")
 
@@ -69,4 +69,23 @@ Lire(tache[tache_nombre].priorite")
 
 tache_nombre <-tache_nombre+1
 Fin
+
+2)----------------------Algorithme pour la fonction afficher
+
+void afficher(tache[],nombre_tache)
+{
+i:entier2
+i<-0
+tant que (i<nombre_tache)
+
+ Debut
+
+ecrire("tache  %d",i)
+ecrire ("nom %s",tache[i].nom)
+ecrire("description %s",tache[i].decription)
+ecrire("date_echeance %d/%d/%d",tache[i].date.jour,tache[i].date.mois,tache[i].date.anne)
+ecrire("priorite %s",tache[i].priorite)
+
+  Fin
+
 
