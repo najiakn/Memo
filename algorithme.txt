@@ -1,0 +1,44 @@
+--------------------------------------------------------------Algorithme-------------------------------------------------------
+
+
+
+-----------------------------------------------------------------------Algorithme pour les directives preprocesseur
+1)----algorithme pour la directive taille 
+Debut
+  #define taille <-100
+Fin
+
+
+
+
+----------------------------------------------------------------------les structures:
+
+1)------------------
+       algorithme pour la structure Date_echeance
+Debut
+ structure date_echeance
+     jour : entier
+     mois :entier
+     annee:entier
+ fin structure
+Fin
+
+
+2)------------------
+    
+     algorithme pour la structure Taches
+
+Debut
+structure taches
+     Nom:chaine des caracteres avec la taille 'taille'
+     description : chaine des caracteres avec la taille 'taille
+     date_eche : date_echeance
+     priorite:chaine des caracteres avec la taille 'taille'
+fin structure 
+Fin
+
+
+---------------------------------------------------------Algorithme pour les fonctions
+
+
+
