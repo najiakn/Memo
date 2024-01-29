@@ -88,4 +88,70 @@ ecrire("priorite %s",tache[i].priorite)
 
   Fin
 
+3)------------------------------Algorithme pour la fonction modifier
+void supprimer(tache[],nombre_tache){
+//affichage des lignes
+i:entier;
+i<-0;
+tant que(i<nombre_tache)
+printf("tache %d |Nom : %s |Description :%s | Date :%d/%d/%d | priorite :%s",i+1,tache[i].nom,tache[i].description,tache[i].date.jour,tache[i].date.mois,tache[i].date.annee,tache[i].prioerite);
+i++;
 
+//choisir une ligne
+choix_ligne:entier
+Ecrire("entrer un indice \n")
+Lire(choix_ligne);
+
+indice : entier
+indice <-choix_ligne -1
+tant que (choix_ligne>=1 && choix_ligne<=nombre_tache){
+Ecrire("les champs disponibles ")
+Ecrire("1:nom")
+Ecrire("2:Description")
+Ecrire("3:Date")
+Ecrire("priorite")
+
+
+//choisir un indice 
+choix_champ:entier;
+Ecrire("entrer le numero d'un champ");
+lire(n)
+switch(choix_champ)
+{
+case 1:
+ecrire("tapez le nom");
+lire(tache[indice].nom)
+break;
+
+case 2:
+ecrire("tapez la description ");
+lire(tache[indice].description);
+break
+
+case 3:
+ecrire("tapez la date ");
+ecrire("tapez le jour ");
+lire(tache[indice].date.jour);
+
+ecrire("tapez le mois")
+lire(tache[indice].date.mois)
+
+ecrire("tapez l'annee")
+lire(tache[indice].date.annee)
+break;
+
+case 4 :
+Ecrire("entrer la priorite")
+lire(tache[indice].priorite)
+
+default :
+ecrire("option non valide");
+return;
+}
+Ecrire("supprimer avec succe");
+}
+else {
+Ecrire("choix non valide ");
+}
+}
+}
