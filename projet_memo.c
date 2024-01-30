@@ -2,10 +2,9 @@
 #include <stdlib.h>
 #include <string.h>
 #include <stdio.h>
-#include "C:/Users/HP/Desktop/cours c/memo/Memo/Memo/struct.h"
-#include "C:/Users/HP/Desktop/cours c/memo/Memo/Memo/functions.h"
-#define PRO_Tache 100
+#include "C:\Users\user\Desktop\cours c\memo\Memo\Memo\functions.h"
 
+#define PRO_Tache 100
 
 
 

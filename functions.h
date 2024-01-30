@@ -1,8 +1,23 @@
 //function ajouter
-#include<stdio.h>
-#include<stdlib.h>
+#include <stdio.h>
+#include <stdlib.h>
 
-#include "C:/Users/HP/Desktop/cours c/memo/Memo/Memo/struct.h"
+#define PRO_Tache 100
+
+typedef struct {
+    int jour;
+    int mois;
+    int annee;
+} date_eche;
+
+// Définir la structure taches
+typedef struct {
+    char nom[PRO_Tache];
+    char description[PRO_Tache];
+    date_eche date;
+    char priorite[PRO_Tache];
+} taches;
+
 
 void ajouter(taches tache[], int tache_nombre) {
     printf("Ajouter une tache :\n");
