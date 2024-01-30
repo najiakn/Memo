@@ -15,7 +15,7 @@ typedef struct {
     char nom[PRO_Tache];
     char description[PRO_Tache];
     date_eche date;
-    char priorite[PRO_Tache];
+    int priorite;
 } taches;
 
 
@@ -39,7 +39,7 @@ void ajouter(taches tache[], int tache_nombre) {
     scanf("%d", &(tache[tache_nombre].date.annee));
 
     printf("Tapez la priorite : ");
-    scanf("%s", tache[tache_nombre].priorite);
+    scanf("%d", &tache[tache_nombre].priorite);
 
     printf("Ajout avec succès !\n");
 }
@@ -52,7 +52,7 @@ void afficher(taches tache[], int tache_nombre) {
 
     int i;
 for (i = 0; i < tache_nombre; i++) {
-    printf("%d. Nom : %s, Description : %s, Date : %d/%d/%d, Priorite : %s\n",
+    printf("%d. Nom : %s, Description : %s, Date : %d/%d/%d, Priorite : %d\n",
            i + 1, tache[i].nom, tache[i].description,
            tache[i].date.jour, tache[i].date.mois, tache[i].date.annee,
            tache[i].priorite);
@@ -66,7 +66,7 @@ void modifier(taches tache[], int tache_nombre) {
 
    int i;
 for (i = 0; i < tache_nombre; i++) {
-        printf("%d. Nom : %s, Description : %s, Date : %d/%d/%d, Priorite : %s\n",
+        printf("%d. Nom : %s, Description : %s, Date : %d/%d/%d, Priorite : %d\n",
                i + 1, tache[i].nom, tache[i].description,
                tache[i].date.jour, tache[i].date.mois, tache[i].date.annee,
                tache[i].priorite);
@@ -109,7 +109,7 @@ for (i = 0; i < tache_nombre; i++) {
                 break;
             case 4:
                 printf("Tapez la nouvelle priorite : ");
-                scanf("%s", tache[index].priorite);
+                scanf("%d", &tache[index].priorite);
                 break;
             default:
                 printf("Choix invalide. Veuillez entrer un nombre correspondant au champ.\n");
@@ -134,7 +134,7 @@ void supprimer(taches tache[], int *tache_nombre) {
 
     int i;
     for (i = 0; i < *tache_nombre; i++) {
-        printf("%d. Nom : %s, Description : %s, Date : %d/%d/%d, Priorite : %s\n",
+        printf("%d. Nom : %s, Description : %s, Date : %d/%d/%d, Priorite : %d\n",
                i + 1, tache[i].nom, tache[i].description,
                tache[i].date.jour, tache[i].date.mois, tache[i].date.annee,
                tache[i].priorite);
@@ -161,6 +161,65 @@ void supprimer(taches tache[], int *tache_nombre) {
 
 
 
+//trier
+void trier(taches tache[],int tache_nombre ,int ordre){
+	int i ;
+	for( i =0;i<tache_nombre -1;i++){
+		int j ;
+		for(j =0;j<tache_nombre -1 -i;j++){
+ int result;
+ if(ordre==1){
+ 	result=(tache[j].date.annee > tache[j + 1].date.annee) ||
+                                      (tache[j].date.annee == tache[j + 1].date.annee &&
+                                       tache[j].date.mois > tache[j + 1].date.mois) ||
+                                      (tache[j].date.annee == tache[j + 1].date.annee &&
+                                       tache[j].date.mois == tache[j + 1].date.mois &&
+                                       tache[j].date.jour > tache[j + 1].date.jour);
+ }
+ 			else {
+                result= (tache[j].date.annee < tache[j + 1].date.annee) ||
+                                      (tache[j].date.annee == tache[j + 1].date.annee &&
+                                       tache[j].date.mois < tache[j + 1].date.mois) ||
+                                      (tache[j].date.annee == tache[j + 1].date.annee &&
+                                       tache[j].date.mois == tache[j + 1].date.mois &&
+                                       tache[j].date.jour < tache[j + 1].date.jour);
+            }
+            if (result) {
+
+                taches temp = tache[j];
+                tache[j] = tache[j + 1];
+                tache[j + 1] = temp;
+            }
+
+		}
+	}
+	
+}
+//
+void filter(taches tache[], int tache_nombre) {
+    int prio;
+    int i ;
+    printf("Entrez la priorite a filtrer  : ");
+    scanf("%d", &prio);
+
+    printf("Taches avec la priorite %d :\n", prio);
+    int trouve = 0;
+    for (i = 0; i < tache_nombre; i++) {
+        if (tache[i].priorite == prio) {
+            afficher(tache +i,1); // Affiche seulement la tache avec la priorite filtree
+            trouve = 1;
+        }
+    }
+
+    if (!trouve) {
+        printf("==================================\n");
+        printf(" Aucune tache avec la priorite %d.\n", prio);
+        printf("==================================\n");
+    }
+}
+
+
+
 
 //function pour menu
 void menu() {
@@ -168,13 +227,14 @@ void menu() {
     taches tache[PRO_Tache];
     int tache_nombre = 0;
 
-    while (choix != 5) {
+    while (choix != 7) {
         printf("1--------------Afficher les taches----------------\n");
         printf("2--------------Ajouter une tache-------------------\n");
         printf("3--------------Moddifier une tache-----------------\n");
          printf("4--------------Supprimer une tache-----------------\n");
-        printf("5--------------Fermer-------------------------------\n");
-
+        printf("5--------------trier les taches-------------------------------\n");
+          printf("6--------------filter les taches-------------------------------\n");
+    printf("7--------------Fermer-------------------------------\n");
         scanf("%d", &choix);
 
         switch (choix) {
@@ -194,8 +254,22 @@ void menu() {
               supprimer(tache, &tache_nombre);
                break;
             case 5:
+              printf("1 trier par date croissante \n");
+              
+              printf("2 trier par date decroissante \n");
+              printf("entrer votre choix \n");
+              int choix_ordre;
+              scanf("%d",&choix_ordre);
+              trier(tache,tache_nombre,choix_ordre);
+              
+               break;
+               
+               case 6:
+                filter(tache,tache_nombre);
+                break;
+            case 7:
                 printf("Fermeture demandée. Au revoir !\n");
-                return;
+                break;
 
             default:
                 printf("Option non valide.\n");
