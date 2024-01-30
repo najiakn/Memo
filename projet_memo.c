@@ -12,6 +12,7 @@
 
 void ajouter(taches tache[], int tache_nombre);
 int main() {
+	system("color 5F");
     menu();
 
     return 0;
